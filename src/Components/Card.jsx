@@ -14,12 +14,35 @@ const Wrapper = styled.div`
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 10px;
+    overflow: hidden;
   }
 
-  .card img {
+  .image-container {
+    position: relative;
     width: 100%;
-    height: auto;
+    height: 250px;
     border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .image-container .hover-img {
+    opacity: 0;
+  }
+
+  .image-container:hover .hover-img {
+    opacity: 1;
+  }
+
+  .image-container:hover .main-img {
+    opacity: 0;
   }
 
   .card h2 {
@@ -57,7 +80,10 @@ function Card({ product }) {
   return (
     <Wrapper>
       <div className="card" key={product.id}>
-        <img src={product.img} alt={product.title} />
+        <div className="image-container">
+          <img src={product.img} alt={product.title} className="main-img" />
+          <img src={product.hoverImg} alt={`${product.title} back`} className="hover-img" />
+        </div>
         <h2>{product.title}</h2>
         <p>{product.description}</p>
         <p className="price">{product.price}</p>

@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Hero from './Hero';
 import Banner from './Banner';
 import CardList from './CardList';
+import Footer from './Footer';
 
 
 const Wrapper = styled.div`
@@ -18,6 +19,7 @@ export default function Home() {
         <Navbar />
       <Hero/>
       <CardList />
+      <Footer />
     </Wrapper>
   );
 }
