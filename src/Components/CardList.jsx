@@ -55,16 +55,16 @@ const data = [
     },
     {
       id: 5,
-      img: "public/front.png",
-      hoverImg: "https://placehold.co/200x250?text=Back",
+      img: "/front.png",
+      hoverImg: "/back5.png",
       title: "Product 5",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 6,
-      img: "public/front.png",
-      hoverImg: "https://placehold.co/200x250?text=Back",
+      img: "/front.png",
+      hoverImg: "/back6.png",
       title: "Product 6",
       price: "₹ 499",
       description: "lorem ipsum is the word"

@@ -19,9 +19,8 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
 
-    a {
-      text-decoration: none;
-      color: #111;
+    img {
+      height:60px;
     }
   }
 
@@ -76,7 +75,9 @@ export default function Navbar() {
     <Wrapper isOpen={isOpen}>
       <nav>
         <div className="logo">
-          <Link to="/">Suaim</Link>
+          <Link to="/">
+          <img src="/logo.png" alt="" />
+          </Link>
         </div>
         <button
           className="toggle-button"
