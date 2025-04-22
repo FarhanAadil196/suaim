@@ -23,32 +23,32 @@ const Wrapper = styled.div`
 const data = [
     {
       id: 1,
-      img: "public/front.png",
-      hoverImg: "public/back1.png",
+      img: "/front.png",
+      hoverImg: "/back1.png",
       title: "Product 1",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 2,
-      img: "public/front.png",
-      hoverImg: "public/back2.png",
+      img: "/front.png",
+      hoverImg: "/back2.png",
       title: "Product 2",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 3,
-      img: "public/front.png",
-      hoverImg: "public/back3.png",
+      img: "/front.png",
+      hoverImg: "/back3.png",
       title: "Product 3",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 4,
-      img: "public/front.png",
-      hoverImg: "https://placehold.co/200x250?text=Back",
+      img: "/front.png",
+      hoverImg: "/back4.png",
       title: "Product 4",
       price: "₹ 499",
       description: "lorem ipsum is the word"
