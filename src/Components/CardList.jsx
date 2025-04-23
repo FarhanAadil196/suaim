@@ -23,49 +23,81 @@ const Wrapper = styled.div`
 const data = [
     {
       id: 1,
-      img: "/front.png",
-      hoverImg: "/back1.png",
+      hoverimg: "/front1.jpg",
+      Img: "/back1.png",
       title: "Product 1",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 2,
-      img: "/front.png",
-      hoverImg: "/back2.png",
+      hoverimg: "/front2.png",
+      Img: "/back2.png",
       title: "Product 2",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 3,
-      img: "/front.png",
-      hoverImg: "/back3.png",
+      hoverimg: "/front3.png",
+      Img: "/back3.png",
       title: "Product 3",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 4,
-      img: "/front.png",
-      hoverImg: "/back4.png",
+      hoverimg: "/front4.jpg",
+      Img: "/back4.png",
       title: "Product 4",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 5,
-      img: "/front.png",
-      hoverImg: "/back5.png",
+      hoverimg: "/front5.jpg",
+      Img: "/back5.png",
       title: "Product 5",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     },
     {
       id: 6,
-      img: "/front.png",
-      hoverImg: "/back6.png",
+      hoverimg: "/front6.jpg",
+      Img: "/back6.png",
       title: "Product 6",
+      price: "₹ 499",
+      description: "lorem ipsum is the word"
+    },
+    {
+      id: 7,
+      hoverimg: "/front7.png",
+      Img: "/back7.png",
+      title: "Product 7",
+      price: "₹ 499",
+      description: "lorem ipsum is the word"
+    },
+    {
+      id: 8,
+      hoverimg: "/front8.jpg",
+      Img: "/back8.png",
+      title: "Product 8",
+      price: "₹ 499",
+      description: "lorem ipsum is the word"
+    },
+    {
+      id: 9,
+      hoverimg: "/front9.png",
+      Img: "/back9.png",
+      title: "Product 9",
+      price: "₹ 499",
+      description: "lorem ipsum is the word"
+    },
+    {
+      id: 10,
+      hoverimg: "/front10.png",
+      Img: "/back10.png",
+      title: "Product 10",
       price: "₹ 499",
       description: "lorem ipsum is the word"
     }

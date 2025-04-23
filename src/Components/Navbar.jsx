@@ -30,6 +30,7 @@ const Wrapper = styled.div`
     background: transparent;
     border: none;
     color: #111;
+    transition: all 10s ease-in-out;
     display: none; /* Hidden by default */
   }
 

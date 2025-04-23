@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity .7s ease-in-out;
   }
 
   .image-container .hover-img {
@@ -81,8 +81,8 @@ function Card({ product }) {
     <Wrapper>
       <div className="card" key={product.id}>
         <div className="image-container">
-          <img src={product.img} alt={product.title} className="main-img" />
-          <img src={product.hoverImg} alt={`${product.title} back`} className="hover-img" />
+          <img src={product.Img} alt={product.title} className="main-img" />
+          <img src={product.hoverimg} alt={`${product.title} back`} className="hover-img" />
         </div>
         <h2>{product.title}</h2>
         <p>{product.description}</p>

@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
 .details img {
   max-width: 350px;
+  max-height:310px;
 }
   .text{
       font-size: 20px;
@@ -47,10 +48,13 @@ function Details() {
   return (
     <Wrapper>
       <Navbar />
-      <Link onClick={() => navigate(-1)}><p>⬅</p></Link>
 
       <div className="details">
-        <img src={product.img} alt={product.title} />
+        <div className="img-b">
+
+      <Link onClick={() => navigate(-1)}><p>⬅</p></Link>
+        <img src={product.hoverImg} alt={product.title} />
+        </div>
         <div className="text">
         <h2>{product.title}</h2>
         <p>{product.description}</p>
