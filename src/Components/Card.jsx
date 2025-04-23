@@ -1,20 +1,21 @@
 // Card.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   .card {
     width: 220px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     margin: 10px;
     overflow: hidden;
+
   }
 
   .image-container {
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity .7s ease-in-out;
+    transition: opacity 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
   }
 
   .image-container .hover-img {
@@ -82,12 +83,16 @@ function Card({ product }) {
       <div className="card" key={product.id}>
         <div className="image-container">
           <img src={product.Img} alt={product.title} className="main-img" />
-          <img src={product.hoverimg} alt={`${product.title} back`} className="hover-img" />
+          <img
+            src={product.hoverimg}
+            alt={`${product.title} back`}
+            className="hover-img"
+          />
         </div>
         <h2>{product.title}</h2>
         <p>{product.description}</p>
         <p className="price">{product.price}</p>
-        <Link to="/details" state={{ product }}>
+        <Link to="/product" state={{ product }}>
           <button>View</button>
         </Link>
       </div>

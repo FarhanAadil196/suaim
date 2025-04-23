@@ -4,20 +4,36 @@ import Card from './Card';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-.classlist{
+  .classlist {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 10px;
-}
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    width:100%;
+  }
+
+  @media (max-width: 768px) {
     .cards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      justify-content: flex-start; /* align items to the start */
     }
+  }
 `;
+
+
 
 
 const data = [
