@@ -11,22 +11,25 @@ function Details() {
 
   const allProducts = state?.allProducts || [];
 
-  if (!product) {
-    return <p>No product data found. Please go back and select a product.</p>;
-  }
-
   const [selectedImg, setSelectedImg] = useState(
-    product.images?.[0] || product.Img
+    product?.images?.[0] || product?.Img
   );
   const [selectedSize, setSelectedSize] = useState(null);
 
   const handleCardClick = (product) => {
     navigate("/product", {
-      state: { product, allProducts },
+      state: {
+        product: product,
+        allProducts: allProducts, // pass all products along to the details page
+      },
     });
   };
 
-  const otherProducts = allProducts.filter((p) => p.id !== product.id);
+  const otherProducts = allProducts.filter((p) => p.id !== product?.id);
+
+  if (!product) {
+    return <p>No product data found. Please go back and select a product.</p>;
+  }
 
   return (
     <Wrapper>
@@ -54,7 +57,15 @@ function Details() {
         <div className="info-section">
           <p className="brand">{product.brand}</p>
           <h2 className="title">{product.title}</h2>
-          <p className="price">{product.price}</p>
+          <p className="price">
+            <span style={{ textDecoration: "line-through", color: "#888" }}>
+              {product.originalPrice}
+            </span>{" "}
+            &nbsp;
+            <span style={{ fontWeight: "bold", color: "#111" }}>
+              {product.discountedPrice}
+            </span>
+          </p>
 
           {product.colors && (
             <>
@@ -106,20 +117,24 @@ function Details() {
       </div>
 
       {/* Other products section */}
-      <h3 className="section-title">You may also like</h3>
-      <div className="other-products">
-        {otherProducts.map((p) => (
-          <div
-            key={p.id}
-            className="other-card"
-            onClick={() => handleCardClick(p)}
-          >
-            <img src={p.Img} alt={p.title} />
-            <p>{p.title}</p>
-            <span>{p.price}</span>
+      {otherProducts.length > 0 && (
+        <>
+          <h3 className="section-title">You may also like</h3>
+          <div className="other-products">
+            {otherProducts.map((p) => (
+              <div
+                key={p.id}
+                className="other-card"
+                onClick={() => handleCardClick(p)}
+              >
+                <img src={p.Img} alt={p.title} />
+                <p>{p.title}</p>
+                <span>{p.discountedPrice}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </Wrapper>
   );
 }
@@ -130,12 +145,10 @@ const Wrapper = styled.div`
   padding: 2rem;
 
   .back-btn {
-   
     border: none;
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 1rem;
-   
   }
 
   .product-details {
@@ -146,6 +159,11 @@ const Wrapper = styled.div`
 
   .image-section {
     flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
   }
 
   .main-img {
@@ -160,6 +178,11 @@ const Wrapper = styled.div`
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
+    flex-direction: column;
+
+    @media (max-width: 940px) {
+      flex-direction: row;
+    }
   }
 
   .thumb {
@@ -180,12 +203,12 @@ const Wrapper = styled.div`
   }
 
   .brand {
-    font-size: 14px;
+    font-size: 35px;
     color: #888;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 35px;
     margin: 0.5rem 0;
   }
 
@@ -248,41 +271,35 @@ const Wrapper = styled.div`
   }
 
   .other-products {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   .other-card {
-    width: 150px;
-    padding: 10px;
     cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 5px #ddd;
-    transition: transform 0.2s;
     text-align: center;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: 0.3s ease;
   }
 
   .other-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   .other-card img {
     width: 100%;
-    height: 150px;
+    height: auto;
     object-fit: cover;
-    border-radius: 8px;
   }
 
-  .other-card p {
-    font-size: 14px;
-    margin: 0.5rem 0;
-  }
-
-  .other-card span {
+  .section-title {
+    margin-top: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: green;
   }
 `;
-

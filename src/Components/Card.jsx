@@ -56,11 +56,6 @@ const Wrapper = styled.div`
     margin: 5px 0;
   }
 
-  .card .price {
-    font-weight: bold;
-    margin: 5px 0;
-  }
-
   .card button {
     margin-top: 10px;
     padding: 8px 16px;
@@ -85,8 +80,16 @@ function Card({ product, allProducts }) {
           />
         </div>
         <h2>{product.title}</h2>
-        <p>{product.description}</p>
-        <p className="price">{product.price}</p>
+
+        <p className="price">
+          <span style={{ textDecoration: "line-through", color: "#888" }}>
+            {product.originalPrice}
+          </span>{" "}
+          &nbsp;
+          <span style={{ fontWeight: "bold", color: "#111" }}>
+            {product.discountedPrice}
+          </span>
+        </p>
         <button
           onClick={() =>
             navigate("/product", {
