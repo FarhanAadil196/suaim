@@ -1,34 +1,53 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useCart } from "./Navbar"; // adjust path based on your file structure
 
 function Details() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const product = state?.product;
+  const { addToCart } = useCart();
 
-  // Check before using product
+  const allProducts = state?.allProducts || [];
+
   if (!product) {
     return <p>No product data found. Please go back and select a product.</p>;
   }
 
-  const [selectedImg, setSelectedImg] = useState(product.images?.[0] || product.Img);
+  const [selectedImg, setSelectedImg] = useState(
+    product.images?.[0] || product.Img
+  );
   const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleCardClick = (product) => {
+    navigate("/product", {
+      state: { product, allProducts },
+    });
+  };
+
+  const otherProducts = allProducts.filter((p) => p.id !== product.id);
 
   return (
     <Wrapper>
+      <button className="back-btn" onClick={() => navigate(-1)}>
+        ← Back to Products
+      </button>
       <div className="product-details">
         <div className="image-section">
           <img src={selectedImg} alt="Product" className="main-img" />
           <div className="thumbnails">
-            {product.images?.map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                alt={`thumb-${i}`}
-                className={`thumb ${selectedImg === img ? "active" : ""}`}
-                onClick={() => setSelectedImg(img)}
-              />
-            ))}
+            {(product.images || [product.Img, product.hoverimg]).map(
+              (img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`thumb-${i}`}
+                  className={`thumb ${selectedImg === img ? "active" : ""}`}
+                  onClick={() => setSelectedImg(img)}
+                />
+              )
+            )}
           </div>
         </div>
 
@@ -59,7 +78,9 @@ function Details() {
                 {product.sizes.map((size, i) => (
                   <div
                     key={i}
-                    className={`size-box ${selectedSize === size ? "selected" : ""}`}
+                    className={`size-box ${
+                      selectedSize === size ? "selected" : ""
+                    }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
@@ -69,8 +90,35 @@ function Details() {
             </>
           )}
 
-          <button className="add-to-cart">Add to Cart</button>
+          <button
+            className="add-to-cart"
+            onClick={() => {
+              const itemToAdd = {
+                ...product,
+                size: selectedSize,
+              };
+              addToCart(itemToAdd);
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
+      </div>
+
+      {/* Other products section */}
+      <h3 className="section-title">You may also like</h3>
+      <div className="other-products">
+        {otherProducts.map((p) => (
+          <div
+            key={p.id}
+            className="other-card"
+            onClick={() => handleCardClick(p)}
+          >
+            <img src={p.Img} alt={p.title} />
+            <p>{p.title}</p>
+            <span>{p.price}</span>
+          </div>
+        ))}
       </div>
     </Wrapper>
   );
@@ -78,13 +126,22 @@ function Details() {
 
 export default Details;
 
-// Styled-components wrapper
 const Wrapper = styled.div`
+  padding: 2rem;
+
+  .back-btn {
+   
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+   
+  }
+
   .product-details {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    padding: 2rem;
   }
 
   .image-section {
@@ -93,8 +150,10 @@ const Wrapper = styled.div`
 
   .main-img {
     width: 100%;
-    max-width: 400px;
+    max-width: 360px;
+    max-height: 410px;
     border-radius: 8px;
+    object-fit: contain;
   }
 
   .thumbnails {
@@ -181,6 +240,49 @@ const Wrapper = styled.div`
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+  }
+
+  .section-title {
+    margin-top: 4rem;
+    font-size: 20px;
+  }
+
+  .other-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .other-card {
+    width: 150px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ddd;
+    transition: transform 0.2s;
+    text-align: center;
+  }
+
+  .other-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .other-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .other-card p {
+    font-size: 14px;
+    margin: 0.5rem 0;
+  }
+
+  .other-card span {
+    font-weight: bold;
+    color: green;
   }
 `;
 

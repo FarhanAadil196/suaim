@@ -9,7 +9,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
     border-radius: 10px;
   }
 
@@ -37,87 +37,108 @@ const Wrapper = styled.div`
 
 
 const data = [
-    {
-      id: 1,
-      hoverimg: "/front1.jpg",
-      Img: "/back1.png",
-      title: "Product 1",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 2,
-      hoverimg: "/front2.png",
-      Img: "/back2.png",
-      title: "Product 2",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 3,
-      hoverimg: "/front3.png",
-      Img: "/back3.png",
-      title: "Product 3",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 4,
-      hoverimg: "/front4.jpg",
-      Img: "/back4.png",
-      title: "Product 4",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 5,
-      hoverimg: "/front5.jpg",
-      Img: "/back5.png",
-      title: "Product 5",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 6,
-      hoverimg: "/front6.jpg",
-      Img: "/back6.png",
-      title: "Product 6",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 7,
-      hoverimg: "/front7.png",
-      Img: "/back7.png",
-      title: "Product 7",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 8,
-      hoverimg: "/front8.jpg",
-      Img: "/back8.png",
-      title: "Product 8",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 9,
-      hoverimg: "/front9.png",
-      Img: "/back9.png",
-      title: "Product 9",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    },
-    {
-      id: 10,
-      hoverimg: "/front10.png",
-      Img: "/back10.png",
-      title: "Product 10",
-      price: "₹ 499",
-      description: "lorem ipsum is the word"
-    }
-  ];
+  {
+    id: 1,
+    hoverimg: "/front1.jpg",
+    Img: "/back1.png",
+    title: "Cotton Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["S", "M", "L", "XL"]
+  },
+  {
+    id: 2,
+    hoverimg: "/front2.png",
+    Img: "/back2.png",
+    title: "T-shirt",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["M", "L", "XL"]
+  },
+  {
+    id: 3,
+    hoverimg: "/front3.png",
+    Img: "/back3.png",
+    title: "Designer Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["S", "M", "L"]
+  },
+  {
+    id: 4,
+    hoverimg: "/front4.jpg",
+    Img: "/back4.png",
+    title: "Graphic Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["M", "L", "XL"]
+  },
+  {
+    id: 5,
+    hoverimg: "/front5.jpg",
+    Img: "/back5.png",
+    title: "Plain Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["L", "XL"]
+  },
+  {
+    id: 6,
+    hoverimg: "/front6.jpg",
+    Img: "/back6.png",
+    title: "Polo Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["S", "M"]
+  },
+  {
+    id: 7,
+    hoverimg: "/front7.png",
+    Img: "/back7.png",
+    title: "Vintage Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["M", "L", "XL"]
+  },
+  {
+    id: 8,
+    hoverimg: "/front8.jpg",
+    Img: "/back8.png",
+    title: "Sporty Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["L", "XL"]
+  },
+  {
+    id: 9,
+    hoverimg: "/front9.png",
+    Img: "/back9.png",
+    title: "Active Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["M", "L", "S"]
+  },
+  {
+    id: 10,
+    hoverimg: "/front10.png",
+    Img: "/back10.png",
+    title: "Classic Tee",
+    price: "₹ 499",
+    description: "lorem ipsum is the word",
+    brand: "Suaim",
+    sizes: ["S", "L", "XL"]
+  }
+];
+
   
 
 function CardList() {

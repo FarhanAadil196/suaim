@@ -2,14 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background-color: #333;
-  color: #fff;
+background-color: var(--clr-dark);
+color: var(--clr-white);
+font-family: var(--font-primary);
   padding: 1rem;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 14px;
   @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 0.5rem;
+    font-size: 12px;
+    padding: 5px;
   }
     @media(max-width: 480px) {
       font-size: 0.8rem;

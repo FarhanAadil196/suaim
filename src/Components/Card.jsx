@@ -1,6 +1,6 @@
 // Card.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -10,12 +10,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding: 15px;
-    background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     margin: 10px;
     overflow: hidden;
-
+    background-color: var(--clr-white);
+    color: var(--clr-dark);
   }
 
   .image-container {
@@ -31,10 +31,10 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+    transition: opacity 0.4s ease;
   }
 
-  .image-container .hover-img {
+  .hover-img {
     opacity: 0;
   }
 
@@ -53,7 +53,6 @@ const Wrapper = styled.div`
 
   .card p {
     font-size: 0.9rem;
-    color: #555;
     margin: 5px 0;
   }
 
@@ -66,18 +65,14 @@ const Wrapper = styled.div`
     margin-top: 10px;
     padding: 8px 16px;
     border: none;
-    background-color: #333;
-    color: #fff;
     cursor: pointer;
     border-radius: 5px;
   }
-
-  .card button:hover {
-    background-color: #555;
-  }
 `;
 
-function Card({ product }) {
+function Card({ product, allProducts }) {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <div className="card" key={product.id}>
@@ -92,9 +87,15 @@ function Card({ product }) {
         <h2>{product.title}</h2>
         <p>{product.description}</p>
         <p className="price">{product.price}</p>
-        <Link to="/product" state={{ product }}>
-          <button>View</button>
-        </Link>
+        <button
+          onClick={() =>
+            navigate("/product", {
+              state: { product, allProducts },
+            })
+          }
+        >
+          View
+        </button>
       </div>
     </Wrapper>
   );

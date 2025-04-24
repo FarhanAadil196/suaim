@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
+import "./colors.css";
+
+// Create context for cart
+const CartContext = React.createContext();
+
+export function useCart() {
+  return useContext(CartContext);
+}
+
+export function CartProvider({ children }) {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems((prevItems) => [...prevItems, product]);
+  };
+
+  return (
+    <CartContext.Provider value={{ cartItems, addToCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+}
 
 const Wrapper = styled.div`
-  background: #f9f9f9;
-  color: #111;
+  background-color: var(--clr-primary);
 
   nav {
     display: flex;
@@ -13,6 +34,7 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 1rem 2rem;
     position: relative;
+    z-index: 10;
   }
 
   .logo {
@@ -20,7 +42,7 @@ const Wrapper = styled.div`
     font-weight: bold;
 
     img {
-      height:60px;
+      height: 60px;
     }
   }
 
@@ -29,9 +51,8 @@ const Wrapper = styled.div`
     cursor: pointer;
     background: transparent;
     border: none;
-    color: #111;
-    transition: all 10s ease-in-out;
-    display: none; /* Hidden by default */
+    color: var(--clr-white);
+    display: none;
   }
 
   .nav-links {
@@ -41,15 +62,32 @@ const Wrapper = styled.div`
 
     li a {
       text-decoration: none;
-      color: #111;
+      color: var(--clr-white);
       font-weight: bold;
     }
   }
 
-  /* Media query for mobile responsiveness */
+  .cart-icon {
+    position: relative;
+    color: var(--clr-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      border-radius: 50%;
+      padding: 2px 6px;
+    }
+  }
+
   @media (max-width: 768px) {
     .toggle-button {
-      display: block; /* Show on mobile */
+      display: block;
     }
 
     .nav-links {
@@ -57,16 +95,17 @@ const Wrapper = styled.div`
       top: 100%;
       left: 0;
       right: 0;
+      background-color: var(--clr-primary);
       flex-direction: column;
-      background-color: #f9f9f9;
       padding: 1rem 2rem;
-      display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')}; /* Conditional rendering */
+      display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
     }
   }
 `;
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartItems } = useCart();
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -77,7 +116,7 @@ export default function Navbar() {
       <nav>
         <div className="logo">
           <Link to="/">
-          <img src="/logo.png" alt="" />
+            <img src="/logo.png" alt="Logo" />
           </Link>
         </div>
         <button
@@ -88,10 +127,34 @@ export default function Navbar() {
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
         <ul className="nav-links">
-          <li><Link to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
-          <li><Link to="/shop" onClick={() => setIsOpen(false)}>Shop</Link></li>
-          <li><Link to="/gallery" onClick={() => setIsOpen(false)}>Gallery</Link></li>
-          <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+          <li>
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/shop" onClick={() => setIsOpen(false)}>
+              Shop
+            </Link>
+          </li>
+          <li>
+            <Link to="/gallery" onClick={() => setIsOpen(false)}>
+              Gallery
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
+              Contact
+            </Link>
+          </li>
+          <li>
+        <Link to="/cart" className="cart-icon">
+          <FaShoppingCart />
+          {cartItems.length > 0 && (
+            <span className="cart-count">{cartItems.length}</span>
+          )}
+        </Link>
+          </li>
         </ul>
       </nav>
     </Wrapper>

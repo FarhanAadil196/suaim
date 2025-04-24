@@ -3,8 +3,6 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
 .footer {
-    background-color: #333;
-    color: #fff;
     padding: .7rem;
     text-align: center;
     font-size: 1.1rem;

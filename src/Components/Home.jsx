@@ -8,8 +8,6 @@ import Footer from './Footer';
 
 
 const Wrapper = styled.div`
-  background: #f9f9f9;
-  color: #111;
 `;
 
 export default function Home() {
@@ -18,8 +16,10 @@ export default function Home() {
       <Banner />
         <Navbar />
       <Hero/>
+    
       <CardList />
       <Footer />
+
     </Wrapper>
   );
 }

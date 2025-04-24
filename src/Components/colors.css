@@ -1,0 +1,9 @@
+:root {
+    --clr-primary: #8B5C2C;      /* Logo brown (main) */
+    --clr-dark: #4A2E14;         /* Dark brown for hover, footer, text */
+    --clr-bg: #F9F3EC;           /* Soft beige background */
+    --clr-white: #ffffff;        /* Text, background, buttons */
+  
+    --font-primary: 'Poppins', sans-serif;
+  }
+  
