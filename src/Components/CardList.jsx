@@ -44,7 +44,7 @@ export const data = [
     id: 1,
     hoverimg: "/front1.jpg",
     Img: "/back1.png",
-    title: "Cotton Tee",
+    title: "Triple Beauty Tee",
     originalPrice: "₹ 699",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -56,7 +56,7 @@ export const data = [
     id: 2,
     hoverimg: "/front2.png",
     Img: "/back2.png",
-    title: "T-shirt",
+    title: "Deep Dive",
     originalPrice: "₹ 699",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -68,7 +68,7 @@ export const data = [
     id: 3,
     hoverimg: "/front3.png",
     Img: "/back3.png",
-    title: "Designer Tee",
+    title: "Shinobi Spirit Tee",
     originalPrice: "₹ 799",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -80,7 +80,7 @@ export const data = [
     id: 4,
     hoverimg: "/front4.jpg",
     Img: "/back4.png",
-    title: "Graphic Tee",
+    title: "Gothic Faith Tee",
     originalPrice: "₹ 749",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -92,7 +92,7 @@ export const data = [
     id: 5,
     hoverimg: "/front5.jpg",
     Img: "/back5.png",
-    title: "Plain Tee",
+    title: "Flame Script Tee",
     originalPrice: "₹ 599",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -104,7 +104,7 @@ export const data = [
     id: 6,
     hoverimg: "/front6.jpg",
     Img: "/back6.png",
-    title: "Polo Tee",
+    title: "Street Racer Tee",
     originalPrice: "₹ 649",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -116,7 +116,7 @@ export const data = [
     id: 7,
     hoverimg: "/front7.png",
     Img: "/back7.png",
-    title: "Vintage Tee",
+    title: "Rebel Spirit Tee",
     originalPrice: "₹ 699",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -128,7 +128,7 @@ export const data = [
     id: 8,
     hoverimg: "/front8.jpg",
     Img: "/back8.png",
-    title: "Sporty Tee",
+    title: "Fallen Angel Tee",
     originalPrice: "₹ 649",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -140,7 +140,7 @@ export const data = [
     id: 9,
     hoverimg: "/front9.png",
     Img: "/back9.png",
-    title: "Active Tee",
+    title: "Mountain Escape Tee",
     originalPrice: "₹ 699",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -152,7 +152,7 @@ export const data = [
     id: 10,
     hoverimg: "/front10.png",
     Img: "/back10.png",
-    title: "Classic Tee",
+    title: "Clandestine Ops Tee",
     originalPrice: "₹ 749",
     discountedPrice: "₹ 499",
     description: "lorem ipsum is the word",
@@ -163,20 +163,6 @@ export const data = [
 ];
 
 function CardList() {
-  const [otherProducts, setOtherProducts] = useState([]);
-
-  useEffect(() => {
-    // For example, showing related products that have similar sizes or same brand.
-    const currentProduct = data[0]; // This could be dynamic based on the selected product
-
-    const relatedProducts = data.filter(
-      (product) =>
-        product.id !== currentProduct.id && product.brand === currentProduct.brand
-    );
-
-    setOtherProducts(relatedProducts);
-  }, []);
-
   return (
     <Wrapper>
       <div className="classlist">
@@ -188,18 +174,7 @@ function CardList() {
         </div>
       </div>
 
-      {otherProducts.length > 0 && (
-        <div className="other-products">
-          <h3 className="section-title">You may also like</h3>
-          {otherProducts.map((p) => (
-            <div key={p.id} className="other-card" onClick={() => console.log(`Navigate to product ${p.id}`)}>
-              <img src={p.Img} alt={p.title} />
-              <p>{p.title}</p>
-              <span>{p.discountedPrice}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      
     </Wrapper>
   );
 }

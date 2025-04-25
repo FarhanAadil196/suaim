@@ -5,6 +5,8 @@ import Hero from './Hero';
 import Banner from './Banner';
 import CardList from './CardList';
 import Footer from './Footer';
+import Category from './Category';
+
 
 
 const Wrapper = styled.div`
@@ -16,7 +18,7 @@ export default function Home() {
       <Banner />
         <Navbar />
       <Hero/>
-    
+      <Category />
       <CardList />
       <Footer />
 

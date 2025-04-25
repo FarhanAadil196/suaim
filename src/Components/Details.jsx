@@ -1,41 +1,35 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useCart } from "./Navbar"; // adjust path based on your file structure
+import { useDispatch } from "react-redux";
+import { setSelectedProduct } from "./CheckoutSlice";
+import { addProductToCheckout } from "./checkoutActions";
+
 
 function Details() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
   const product = state?.product;
-  const { addToCart } = useCart();
-
-  const allProducts = state?.allProducts || [];
 
   const [selectedImg, setSelectedImg] = useState(
     product?.images?.[0] || product?.Img
   );
   const [selectedSize, setSelectedSize] = useState(null);
 
-  const handleCardClick = (product) => {
-    navigate("/product", {
-      state: {
-        product: product,
-        allProducts: allProducts, // pass all products along to the details page
-      },
-    });
-  };
-
-  const otherProducts = allProducts.filter((p) => p.id !== product?.id);
-
   if (!product) {
     return <p>No product data found. Please go back and select a product.</p>;
   }
+  const handleAddToCheckout = (product) => {
+    dispatch(addProductToCheckout(product)); // Dispatch action to add to checkout
+  };
 
   return (
     <Wrapper>
       <button className="back-btn" onClick={() => navigate(-1)}>
         ← Back to Products
       </button>
+
       <div className="product-details">
         <div className="image-section">
           <img src={selectedImg} alt="Product" className="main-img" />
@@ -57,10 +51,11 @@ function Details() {
         <div className="info-section">
           <p className="brand">{product.brand}</p>
           <h2 className="title">{product.title}</h2>
+          <p className="description">{product.description}</p>
           <p className="price">
             <span style={{ textDecoration: "line-through", color: "#888" }}>
               {product.originalPrice}
-            </span>{" "}
+            </span>
             &nbsp;
             <span style={{ fontWeight: "bold", color: "#111" }}>
               {product.discountedPrice}
@@ -101,40 +96,10 @@ function Details() {
             </>
           )}
 
-          <button
-            className="add-to-cart"
-            onClick={() => {
-              const itemToAdd = {
-                ...product,
-                size: selectedSize,
-              };
-              addToCart(itemToAdd);
-            }}
-          >
-            Add to Cart
-          </button>
+<button onClick={() => handleAddToCheckout(product)}>Add to Checkout</button>
+
         </div>
       </div>
-
-      {/* Other products section */}
-      {otherProducts.length > 0 && (
-        <>
-          <h3 className="section-title">You may also like</h3>
-          <div className="other-products">
-            {otherProducts.map((p) => (
-              <div
-                key={p.id}
-                className="other-card"
-                onClick={() => handleCardClick(p)}
-              >
-                <img src={p.Img} alt={p.title} />
-                <p>{p.title}</p>
-                <span>{p.discountedPrice}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
     </Wrapper>
   );
 }

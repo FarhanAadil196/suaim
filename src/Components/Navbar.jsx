@@ -105,7 +105,6 @@ const Wrapper = styled.div`
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartItems } = useCart();
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -148,11 +147,8 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-        <Link to="/cart" className="cart-icon">
-          <FaShoppingCart />
-          {cartItems.length > 0 && (
-            <span className="cart-count">{cartItems.length}</span>
-          )}
+        <Link to="/checkout" className="cart-icon">
+          <FaShoppingCart />  
         </Link>
           </li>
         </ul>
