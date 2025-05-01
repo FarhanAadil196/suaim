@@ -1,38 +1,38 @@
 @import './Components/colors.css';
 @import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Cascadia Mono", sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cascadia Mono", sans-serif;
 }
+
 body {
-    font-family: var(--font-primary);
-    background-color: var(--clr-bg);
-    color: var(--clr-dark);
-  }
-  
-  nav {
-    background-color: var(--clr-primary);
-    color: var(--clr-white);
-  }
-  
-  button {
-    background-color: var(--clr-primary);
-    color: var(--clr-white);
-    border: none;
-    padding: 0.75rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: var(--clr-dark);
-  }
-  
-  footer {
-    background-color: var(--clr-dark);
-    color: var(--clr-white);
-    padding: 1rem;
-  }
-  
+  background-color: var(--clr-bg);     /* isabelline */
+  color: var(--clr-white);             /* black */
+}
+
+nav {
+  background-color: var(--clr-primary);  /* raw-umber */
+  color: var(--clr-white);               /* black */
+}
+
+button {
+  background-color: var(--clr-primary);  /* raw-umber */
+  color: var(--clr-bg);                  /* isabelline */
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--clr-dark);     /* raw-umber (or darken with custom) */
+}
+
+footer {
+  background-color: var(--clr-dark);     /* raw-umber */
+  color: var(--clr-bg);                  /* isabelline */
+  padding: 1rem;
+}

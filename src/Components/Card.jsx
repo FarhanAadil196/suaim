@@ -15,8 +15,7 @@ const Wrapper = styled.div`
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     margin: 10px;
     overflow: hidden;
-    background-color: var(--clr-white);
-    color: var(--clr-dark);
+    
   }
 
   .image-container {

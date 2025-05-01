@@ -1,9 +1,16 @@
 :root {
-    --clr-primary: #8B5C2C;      /* Logo brown (main) */
-    --clr-dark: #4A2E14;         /* Dark brown for hover, footer, text */
-    --clr-bg: #F9F3EC;           /* Soft beige background */
-    --clr-white: #ffffff;        /* Text, background, buttons */
-  
-    --font-primary: 'Poppins', sans-serif;
-  }
-  
+  --raw-umber: #996d3eff; /* earthy brown */
+  --dun: #dfc9b0ff; /* soft tan */
+  --lion: #b28f71ff; /* warm beige */
+  --isabelline: #f7f0eaff; /* off-white */
+  --black: #000000ff; /* true black */
+
+  --clr-primary: var(--raw-umber); /* main buttons, nav background */
+  --clr-secondary: var(--lion); /* highlights, cards */
+  --clr-accent: var(--dun); /* lighter background sections */
+  --clr-bg: var(--isabelline); /* page background */
+  --clr-white: var(--black); /* main text */
+  --clr-dark: var(--raw-umber); /* hover states, footer */
+
+  --font-primary: "Poppins", sans-serif;
+}

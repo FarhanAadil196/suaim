@@ -27,9 +27,10 @@ export function CartProvider({ children }) {
 
 const Wrapper = styled.div`
   background-color: var(--clr-primary);
-
+  
   nav {
     display: flex;
+    height: 15vh;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
@@ -62,14 +63,14 @@ const Wrapper = styled.div`
 
     li a {
       text-decoration: none;
-      color: var(--clr-white);
+      color: var(--clr-accent);
       font-weight: bold;
     }
   }
 
   .cart-icon {
     position: relative;
-    color: var(--clr-white);
+    color: var(--clr-accent);
     font-size: 1.5rem;
     cursor: pointer;
 
