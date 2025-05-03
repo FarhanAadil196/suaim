@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   }
 
   .card h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 10px 0 5px;
   }
 
@@ -79,6 +79,8 @@ function Card({ product, allProducts }) {
             className="hover-img"
           />
         </div>
+        <div className="text-container">
+
         <h2>{product.title}</h2>
 
         <p className="price">
@@ -96,9 +98,10 @@ function Card({ product, allProducts }) {
               state: { product, allProducts },
             })            
           }
-        >
+          >
           View
         </button>
+            </div>
       </div>
     </Wrapper>
   );
