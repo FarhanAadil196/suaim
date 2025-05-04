@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
-import styled from 'styled-components';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Wrapper = styled.div`
   .hero {
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,6 +17,9 @@ const Wrapper = styled.div`
       flex-direction: column;
       text-align: center;
     }
+      @media (max-width: 480px) {
+        width: 100%;
+      }
   }
 
   .hero-text {
@@ -54,99 +56,255 @@ const Wrapper = styled.div`
     border-radius: 5px;
     cursor: pointer;
   }
-
-  .cards {
-    flex: 2;
+.wrapper {
+  flex:1;
+}
+  .container {
+    height: 400px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
     flex-wrap: nowrap;
-    overflow-x: auto;
-
-    @media (max-width: 768px) {
-      justify-content: flex-start;
-    }
+    justify-content: start;
   }
 
   .card {
-    min-width: 200px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    padding: 1rem;
-    transition: transform 0.3s;
-    text-align: center;
+    width: 80px;
+    border-radius: 2rem;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 10px;
+    display: flex;
+    align-items: flex-end;
+    transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+  }
 
-    @media (max-width: 480px) {
-      min-width: 150px;
+  .card > .row {
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .card > .row > .icon {
+    background: #223;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+  }
+
+  .card > .row > .description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 80px;
+    width: 520px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition-delay: 0.3s;
+    transition: all 0.3s ease;
+  }
+
+  .description p {
+    color: #b0b0ba;
+    padding-top: 5px;
+  }
+
+  .description h4 {
+    text-transform: uppercase;
+  }
+
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    width: 300px;
+  }
+
+  input:checked + label .description {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  label[for="c1"] {
+    background-image: url("./front1.jpg");
+  }
+  label[for="c2"] {
+    background-image: url("./front2.png");
+  }
+  label[for="c3"] {
+    background-image: url("./front3.png");
+  }
+  label[for="c4"] {
+    background-image: url("./front4.jpg");
+  }
+    @media (max-width: 1024px) {
+    .container {
+      justify-content: center;
+    }
+
+    .card {
+      width: 60px;
+      margin: 0 6px;
+    }
+
+    input:checked + label {
+      width: 250px;
+    }
+
+    .description {
+      width: 100%;
     }
   }
 
-  .card img {
-    width: 100%;
-    border-radius: 10px;
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      height:250px;
+
+    }
+
+    .card {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: 30px;
+      margin: 0 5px;
+    }
+
+    input:checked + label {
+      width: 220px;
+    }
+
+    .description {
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .hero-text h2 {
+      font-size: 2.2rem;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+    }
+
+    .hero-text button {
+      font-size: 1rem;
+      padding: 0.8rem 1.5rem;
+    }
   }
 
-  .card p {
-    margin-top: 1rem;
-    font-weight: 500;
+  @media (max-width: 480px) {
+    .card {
+      width: 20px;
+    }
+
+    input:checked + label {
+      width: 150px;
+    }
+
+    .hero-text h2 {
+      font-size: 1.6rem;
+    }
+
+    .hero-text p {
+      font-size: 0.95rem;
+    }
+
+    .description {
+      height: auto;
+    }
   }
 `;
 
 export default function Hero() {
-  const cardsRef = useRef([]);
+  const scope = useRef(null);
   const textRef = useRef([]);
+  const [selectedCard, setSelectedCard] = useState("c1"); // set initial active card
 
-  const cardData = [
-    { id: 1, img: "/front1.jpg", text: "Shop Now" },
-    { id: 2, img: "/front2.png", text: "Shop Now" },
-    { id: 3, img: "/front3.png", text: "Shop Now" },
-    { id: 4, img: "/front4.jpg", text: "Shop Now" },
-    { id: 5, img: "/front5.jpg", text: "Shop Now" },
-  ];
-
-  useGSAP(() => {
-    // Animate hero text elements
-    gsap.from(textRef.current, {
-      opacity: 0,
-      y: 30,
-      stagger: 0.2,
-      duration: 1,
-      ease: 'power2.out',
-    });
-
-    // Animate cards
-    gsap.from(cardsRef.current, {
-      opacity: 0,
-      y: 50,
-      stagger: 0.2,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }, []);
+  useGSAP(
+    () => {
+      gsap.from(textRef.current.filter(Boolean), {
+        opacity: 0,
+        y: 30,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power2.out",
+      });
+    },
+    { scope }
+  );
 
   return (
-    <Wrapper>
+    <Wrapper ref={scope}>
       <section className="hero">
         <div className="hero-text">
-          <h2 ref={(el) => (textRef.current[0] = el)}>Make Your Look More Perfect!</h2>
+          <h2 ref={(el) => (textRef.current[0] = el)}>
+            Make Your Look More Perfect!
+          </h2>
           <p ref={(el) => (textRef.current[1] = el)}>
             Fashion is the armor to survive the reality of everyday life :)
           </p>
-          <button ref={(el) => (textRef.current[2] = el)}>Start Shopping</button>
+          <button ref={(el) => (textRef.current[2] = el)}>
+            Start Shopping
+          </button>
         </div>
-        <div className="cards">
-          {cardData.map((card, index) => (
-            <div
-              key={card.id}
-              className="card"
-              ref={(el) => (cardsRef.current[index] = el)}
-            >
-              <img src={card.img} alt={`model-${card.id}`} />
-              <p>{card.text}</p>
-            </div>
-          ))}
+
+        <div className="wrapper">
+          <div className="container">
+            {["c1", "c2", "c3", "c4"].map((id, index) => (
+              <React.Fragment key={id}>
+                <input
+                  type="radio"
+                  name="slide"
+                  id={id}
+                  checked={selectedCard === id}
+                  onChange={() => setSelectedCard(id)}
+                />
+                <label
+                  htmlFor={id}
+                  className="card"
+                  style={{ backgroundImage: `url('./front${index + 1}.jpg')` }}
+                >
+                  <div className="row">
+                    <div className="icon">{index + 1}</div>
+                    <div className="description">
+                      <h4>
+                        {
+                          [
+                            "Winter",
+                            "Digital Technology",
+                            "Globalization",
+                            "New Technologies",
+                          ][index]
+                        }
+                      </h4>
+                      <p>
+                        {
+                          [
+                            "Winter has so much to offer - creative activities",
+                            "Gets better every day - stay tuned",
+                            "Help people all over the world",
+                            "Space engineering becomes more and more advanced",
+                          ][index]
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </label>
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </section>
     </Wrapper>
