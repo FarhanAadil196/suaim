@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   padding: 1rem;
   height:10vh;
   text-align: center;
-  font-size: 14px;
+  // font-size: 14px;
   @media (max-width: 768px) {
     font-size: 12px;
 

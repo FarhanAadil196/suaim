@@ -7,11 +7,14 @@ import Checkout from "./Components/Checkout";
 import Login from "./Components/Login";
 import Details from "./Components/Details";
 import Shop from "./Components/Shop";
+import Cart from "./Components/Cart";
+
 
 function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/cart" element={<Cart />} />
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
         <Route path="/contact" element={<Contact />} />

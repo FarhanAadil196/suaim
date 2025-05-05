@@ -60,6 +60,7 @@ const Wrapper = styled.div`
     list-style: none;
     display: flex;
     gap: 1rem;
+    align-items: center;
 
     li a {
       text-decoration: none;

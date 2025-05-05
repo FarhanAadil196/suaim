@@ -6,6 +6,8 @@ import Banner from './Banner';
 import CardList from './CardList';
 import Footer from './Footer';
 import Category from './Category';
+import Subscribe from './Subscribe';
+
 
 
 
@@ -20,6 +22,7 @@ export default function Home() {
       <Hero/>
       <Category />
       <CardList />
+      <Subscribe />
       <Footer />
 
     </Wrapper>

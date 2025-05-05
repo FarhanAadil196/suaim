@@ -54,7 +54,7 @@ export const data = [
   },
   {
     id: 2,
-    hoverimg: "/front2.png",
+    hoverimg: "/front2.jpg",
     Img: "/back2.png",
     title: "Deep Dive Tee",
     originalPrice: "₹ 499",
@@ -66,7 +66,7 @@ export const data = [
   },
   {
     id: 3,
-    hoverimg: "/front3.png",
+    hoverimg: "/front3.jpg",
     Img: "/back3.png",
     title: "Shinobi's Tee",
     originalPrice: "₹ 499",

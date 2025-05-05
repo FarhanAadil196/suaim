@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { setSelectedProduct } from "./CheckoutSlice";
 import { addProductToCheckout } from "./checkoutActions";
-
 
 function Details() {
   const dispatch = useDispatch();
@@ -20,8 +18,22 @@ function Details() {
   if (!product) {
     return <p>No product data found. Please go back and select a product.</p>;
   }
-  const handleAddToCheckout = (product) => {
-    dispatch(addProductToCheckout(product)); // Dispatch action to add to checkout
+
+  const handleAddToCheckout = () => {
+    const selectedProductDetails = {
+      id: product.id,
+      title: product.title,
+      brand: product.brand,
+      discountedPrice: product.discountedPrice,
+      originalPrice: product.originalPrice,
+      description: product.description,
+      selectedImg,
+      selectedSize,
+      quantity: 1,
+    };
+
+    dispatch(addProductToCheckout(selectedProductDetails));
+    navigate("/checkout");
   };
 
   return (
@@ -96,8 +108,15 @@ function Details() {
             </>
           )}
 
-<button onClick={() => handleAddToCheckout(product)}>Add to Checkout</button>
-
+          <button
+            className="add-to-cart"
+            onClick={handleAddToCheckout}
+            disabled={!selectedSize && product.sizes?.length}
+          >
+            {product.sizes?.length && !selectedSize
+              ? "Select Size"
+              : "Add to Checkout"}
+          </button>
         </div>
       </div>
     </Wrapper>
@@ -177,6 +196,12 @@ const Wrapper = styled.div`
     margin: 0.5rem 0;
   }
 
+  .description {
+    margin: 0.5rem 0;
+    font-size: 16px;
+    color: #333;
+  }
+
   .price {
     font-size: 20px;
     color: green;
@@ -228,43 +253,11 @@ const Wrapper = styled.div`
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.3s;
   }
 
-  .section-title {
-    margin-top: 4rem;
-    font-size: 20px;
-  }
-
-  .other-products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .other-card {
-    cursor: pointer;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    transition: 0.3s ease;
-  }
-
-  .other-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .other-card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .section-title {
-    margin-top: 2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+  .add-to-cart:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 `;
