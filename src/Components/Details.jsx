@@ -110,7 +110,10 @@ function Details() {
 
           <button
             className="add-to-cart"
-            onClick={handleAddToCheckout}
+            onClick={() => {
+              handleAddToCheckout();
+              navigate("/cart");
+            }}
             disabled={!selectedSize && product.sizes?.length}
           >
             {product.sizes?.length && !selectedSize

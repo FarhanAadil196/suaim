@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: var(--clr-dark);
-  color: var(--clr-bg);
+  background-color: var(--clr-bg);
+  color: var(--clr-dark);
   font-family: var(--font-primary);
   padding: 1rem;
   height:10vh;
