@@ -1,11 +1,15 @@
-// src/redux/store.js
-import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './cartSlice';
+import { combineReducers, createStore } from 'redux';
+import checkoutReducer from './checkoutReducer';
 
-const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-  },
+const rootReducer = combineReducers({
+  checkout: checkoutReducer,
+  // other reducers...
 });
+
+const store = createStore(
+  rootReducer,
+  // for redux devtools
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default store;

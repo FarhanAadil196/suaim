@@ -31,7 +31,7 @@ function Details() {
       selectedSize,
       quantity: 1,
     };
-
+console.log("Selected product being dispatched:", selectedProductDetails);
     dispatch(addProductToCheckout(selectedProductDetails));
     navigate("/checkout");
   };

@@ -1,28 +1,35 @@
 // src/components/Checkout.jsx
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from './cartSlice';
-import styled from 'styled-components';
-import Navbar from './Navbar';
-
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCheckout } from "./checkoutActions"; // Make sure this is the correct action
+import styled from "styled-components";
+import Navbar from "./Navbar";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartItems = useSelector((state) => state.checkout.checkoutItems);
 
   const [form, setForm] = useState({
-    name: '',
-    address: '',
-    email: '',
-    phone: '',
+    name: "",
+    address: "",
+    email: "",
+    phone: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
 
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const subtotal = cartItems.reduce((acc, item) => {
+    const priceRaw = item.discountedPrice ?? item.price ?? 0;
+    const price = parseFloat(priceRaw.toString().replace(/[^\d.]/g, "")); // removes ₹ or symbols
+    const quantity = parseInt(item.quantity ?? 1, 10);
+    const totalForItem =
+      !isNaN(price) && !isNaN(quantity) ? price * quantity : 0;
+    const itemTotal =
+      !isNaN(price) && !isNaN(quantity)
+        ? (price * quantity).toFixed(2)
+        : "0.00";
+    return acc + totalForItem;
+  }, 0);
 
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,7 +38,7 @@ const Checkout = () => {
   const handleOrder = () => {
     const { name, address, email, phone } = form;
     if (!name || !address || !email || !phone) {
-      alert('Please fill in all fields');
+      alert("Please fill in all fields");
       return;
     }
 
@@ -42,9 +49,9 @@ const Checkout = () => {
       date: new Date().toLocaleString(),
     };
 
-    localStorage.setItem('order', JSON.stringify(orderData));
-    dispatch(clearCart());
-    setForm({ name: '', address: '', email: '', phone: '' });
+    localStorage.setItem("order", JSON.stringify(orderData));
+    dispatch(clearCheckout()); // Fixed action name
+    setForm({ name: "", address: "", email: "", phone: "" });
     setSubmitted(true);
   };
 
@@ -53,9 +60,12 @@ const Checkout = () => {
       <Navbar />
       <h2>Checkout</h2>
       {submitted ? (
-        <p>Thank you for your purchase!</p>
-      ) : (
         <>
+        <p>Thank you for your purchase!</p>
+        <button onClick={() => setSubmitted(false)}>Back to Shop</button>
+        </>
+      ) : (
+        <div className="checkout">
           <form>
             <input
               type="text"
@@ -92,18 +102,31 @@ const Checkout = () => {
           </form>
           <div className="summary">
             <h3>Order Summary</h3>
-            {cartItems.map((item) => (
-              <div key={item.id} className="summary-item">
-                <p>
-                  {item.title} x {item.quantity} = ₹
-                  {(item.price * item.quantity).toFixed(2)}
-                </p>
-              </div>
-            ))}
+            {cartItems.map((item) => {
+              const priceRaw = item.discountedPrice ?? item.price ?? 0;
+              const price = parseFloat(
+                priceRaw.toString().replace(/[^\d.]/g, "")
+              );
+              const quantity = parseInt(item.quantity ?? 1, 10);
+              const itemTotal =
+                !isNaN(price) && !isNaN(quantity)
+                  ? (price * quantity).toFixed(2)
+                  : "0.00";
+
+              return (
+                <div key={item.id} className="summary-item">
+                  <img src={item.selectedImg} alt={item.title} />
+                  <p>
+                    {item.title} x {quantity} = ₹{itemTotal}
+                  </p>
+                </div>
+              );
+            })}
+
             <h3>Total: ₹{subtotal.toFixed(2)}</h3>
             <button onClick={handleOrder}>Place Order</button>
           </div>
-        </>
+        </div>
       )}
     </Wrapper>
   );
@@ -112,10 +135,18 @@ const Checkout = () => {
 export default Checkout;
 
 const Wrapper = styled.div`
+  .checkout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
   padding: 2rem;
   form {
     display: flex;
     flex-direction: column;
+    flex: 1;
     input {
       margin-bottom: 1rem;
       padding: 0.5rem;
@@ -123,8 +154,15 @@ const Wrapper = styled.div`
   }
   .summary {
     margin-top: 2rem;
+    flex: 1;
     .summary-item {
       margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: ;
+      align-items: center;
+    }
+    img {
+      width: 50px;
     }
     h3 {
       margin-top: 1rem;
