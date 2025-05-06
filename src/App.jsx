@@ -8,14 +8,19 @@ import Login from "./Components/Login";
 import Details from "./Components/Details";
 import Shop from "./Components/Shop";
 import Cart from "./Components/Cart";
+import Gallery from "./Components/Gallery";
+import ScrollToTop from "./Components/ScrollToTop";
 
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
-      <Route path="/cart" element={<Cart />} />
         <Route path="/" element={<Home />} />
+
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/product" element={<Product />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />

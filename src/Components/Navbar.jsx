@@ -149,7 +149,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-        <Link to="/checkout" className="cart-icon">
+        <Link to="/cart" className="cart-icon">
           <FaShoppingCart />  
         </Link>
           </li>

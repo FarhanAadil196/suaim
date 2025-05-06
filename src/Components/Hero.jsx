@@ -77,8 +77,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: flex-end;
     transition: 0.6s cubic-bezier(0.28, -0.03, 0, 0.99);
-    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
-  }
+box-shadow: inset -11px -11px 13px 0px rgba(0, 0, 0,0.8 );
+}
 
   .card > .row {
     color: white;
