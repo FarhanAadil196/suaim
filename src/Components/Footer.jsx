@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -49,8 +50,8 @@ function Footer() {
         <div>
           <strong>Quick link 🔗</strong>
           <div className="links">
-            <a href="#search">Search</a>
-            <a href="#about">About Us</a>
+            <Link to="/search">Shop</Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
         </div>
       </footer>

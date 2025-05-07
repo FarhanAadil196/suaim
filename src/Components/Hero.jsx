@@ -107,11 +107,12 @@ box-shadow: inset -11px -11px 13px 0px rgba(0, 0, 0,0.8 );
     opacity: 0;
     transform: translateY(30px);
     transition-delay: 0.3s;
+    color: white;
     transition: all 0.3s ease;
   }
 
   .description p {
-    color: #b0b0ba;
+    
     padding-top: 5px;
   }
 
@@ -188,6 +189,7 @@ box-shadow: inset -11px -11px 13px 0px rgba(0, 0, 0,0.8 );
     .description {
       width: 100%;
       padding: 0 10px;
+
     }
 
     .hero-text h2 {
