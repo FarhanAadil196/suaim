@@ -169,11 +169,15 @@ function Category() {
         <div className="cat-cont-2">
           <div ref={cat2Ref} className="cat-2">
             <h3>Trending Collections</h3>
-            <button>Shop Now</button>
+          <Link to="/shop">
+            <button>View</button>
+          </Link>
           </div>
           <div ref={cat3Ref} className="cat-3">
             <h3>Best Sellers</h3>
-            <button>Shop Now</button>
+          <Link to="/shop">
+            <button>View</button>
+          </Link>
           </div>
         </div>
       </div>

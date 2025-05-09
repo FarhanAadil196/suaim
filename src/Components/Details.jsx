@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import Footer from "./Footer";
 import { addProductToCheckout } from "./checkoutActions";
 
 function Details() {
@@ -63,7 +64,6 @@ console.log("Selected product being dispatched:", selectedProductDetails);
         <div className="info-section">
           <p className="brand">{product.brand}</p>
           <h2 className="title">{product.title}</h2>
-          <p className="description">{product.description}</p>
           <p className="price">
             <span style={{ textDecoration: "line-through", color: "#888" }}>
               {product.originalPrice}
@@ -118,10 +118,11 @@ console.log("Selected product being dispatched:", selectedProductDetails);
           >
             {product.sizes?.length && !selectedSize
               ? "Select Size"
-              : "Add to Checkout"}
+              : "Add to Cart"}
           </button>
         </div>
       </div>
+      <Footer />
     </Wrapper>
   );
 }

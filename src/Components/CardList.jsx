@@ -1,11 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Card from './Card';
 import styled from 'styled-components';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// Register ScrollTrigger with GSAP
-gsap.registerPlugin(ScrollTrigger);
 
 const Wrapper = styled.div`
   .classlist {
@@ -77,7 +72,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["M", "L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 20
   },
   {
@@ -89,7 +84,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 10
   },
   {
@@ -101,7 +96,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["M", "L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 12
   },
   {
@@ -113,7 +108,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 18
   },
   {
@@ -125,7 +120,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["S", "M"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 9
   },
   {
@@ -137,7 +132,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["M", "L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 14
   },
   {
@@ -149,7 +144,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 11
   },
   {
@@ -161,7 +156,7 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["M", "L", "S"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 17
   },
   {
@@ -173,68 +168,19 @@ export const data = [
     discountedPrice: "₹ 149",
     description: "lorem ipsum is the word",
     brand: "Suaim",
-    sizes: ["S", "L", "XL"],
+    sizes: ["S", "M", "L", "XL"],
     quantity: 13
   }
 ];
 
 function CardList() {
-  const cardsRef = useRef([]);
-
-  useEffect(() => {
-    // GSAP Animation with ScrollTrigger
-    gsap.fromTo(
-      cardsRef.current, 
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.2, // Stagger the animation for each card
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".cards",  // Trigger the animation when the cards come into the viewport
-          start: "top bottom", // Start the animation when the top of the .cards section reaches the bottom of the viewport
-          end: "bottom top", // End when the bottom of the .cards section reaches the top of the viewport
-          scrub: true, // Scrub animation as you scroll
-          markers: false, // Optional: Set to true to see ScrollTrigger markers
-        }
-      }
-    );
-
-    // Mobile-specific GSAP tweaks
-    if (window.innerWidth <= 768) {
-      gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, scale: 0.8 },
-        {
-          opacity: 1,
-          scale: 1,
-          stagger: 0.15,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".cards",
-            start: "top 80%", // Start the animation a little later for better scroll performance on mobile
-            end: "bottom top",
-            scrub: true,
-            markers: false,
-          },
-        }
-      );
-    }
-  }, []);
-
   return (
     <Wrapper>
       <div className="classlist">
         <h3>Product List</h3>
         <div className="cards">
-          {data.map((product, index) => (
-            <div
-              key={product.id}
-              ref={(el) => (cardsRef.current[index] = el)} // Add ref for ScrollTrigger
-            >
+          {data.map((product) => (
+            <div key={product.id}>
               <Card product={product} />
             </div>
           ))}

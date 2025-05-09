@@ -119,11 +119,13 @@ const Checkout = () => {
                   <p>
                     {item.title} x {quantity} = ₹{itemTotal}
                   </p>
+
                 </div>
               );
             })}
 
             <h3>Total: ₹{subtotal.toFixed(2)}</h3>
+            <h4>Shipping: Free</h4>
             <button onClick={handleOrder}>Place Order</button>
           </div>
         </div>
