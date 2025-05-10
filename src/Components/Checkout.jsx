@@ -58,15 +58,18 @@ const Checkout = () => {
   return (
     <Wrapper>
       <Navbar />
-      <h2>Checkout</h2>
       {submitted ? (
-        <>
+        <div className="submitted">
+          <video autoPlay loop>
+            <source src="/animation-unscreen.gif" type="video/gif" />
+          </video>
         <p>Thank you for your purchase!</p>
         <button onClick={() => setSubmitted(false)}>Back to Shop</button>
-        </>
+        </div>
       ) : (
         <div className="checkout">
           <form>
+          <h2>Checkout</h2>
             <input
               type="text"
               name="name"
@@ -137,14 +140,24 @@ const Checkout = () => {
 export default Checkout;
 
 const Wrapper = styled.div`
+.submitted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  button {
+    margin-top: 1rem;
+  }
+}
   .checkout {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    padding: 1rem;
     flex-wrap: wrap;
   }
-  padding: 2rem;
   form {
     display: flex;
     flex-direction: column;

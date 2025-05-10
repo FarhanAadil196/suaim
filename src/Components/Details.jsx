@@ -122,7 +122,6 @@ console.log("Selected product being dispatched:", selectedProductDetails);
           </button>
         </div>
       </div>
-      <Footer />
     </Wrapper>
   );
 }

@@ -48,8 +48,6 @@ export default GalleryPage;
 const Wrapper = styled.section`
   min-height: 100vh;
   .container {
-    max-width: 1300px;
-    margin: 0 auto;
     text-align: center;
   }
 
@@ -79,6 +77,10 @@ columns: 300px;
       cursor: pointer;
       transform: scale(1.15);
     }
+      @media (max-width: 768px) {
+        width: 100%;
+        padding: 0 10px;
+      }
   }
 }}
 `;
