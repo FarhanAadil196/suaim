@@ -164,6 +164,9 @@ const Wrapper = styled.div`
     gap: 10px;
     padding: 1rem;
     flex-wrap: wrap;
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
   }
   form {
     display: flex;
