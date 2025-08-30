@@ -10,17 +10,17 @@
 
 body {
   background-color: var(--clr-bg);     /* isabelline */
-  color: var(--clr-white);             /* black */
+  color: var(--clr-dark);             /* black */
 }
 
 nav {
   background-color: var(--clr-primary);  /* raw-umber */
-  color: var(--clr-white);               /* black */
+  color: var(--clr-dark);               /* black */
 }
 
 button {
   background-color: var(--clr-primary);  /* raw-umber */
-  color: var(--clr-bg);                  /* isabelline */
+  color: var(--clr-white);                  /* isabelline */
   border: none;
   padding: 0.75rem 1.2rem;
   border-radius: 6px;

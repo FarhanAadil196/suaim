@@ -4,12 +4,13 @@
   --lion: #b28f71ff; /* warm beige */
   --isabelline: #f7f0eaff; /* off-white */
   --black: #000000ff; /* true black */
+  --white: #ffffffff; /* true white */
 
   --clr-primary: var(--raw-umber); /* main buttons, nav background */
   --clr-secondary: var(--lion); /* highlights, cards */
   --clr-accent: var(--dun); /* lighter background sections */
   --clr-bg: var(--isabelline); /* page background */
-  --clr-white: var(--black); /* main text */
+  --clr-white: var(--white); /* main text */
   --clr-dark: var(--raw-umber); /* hover states, footer */
 
   --font-primary: "Poppins", sans-serif;

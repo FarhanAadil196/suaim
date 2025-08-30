@@ -60,8 +60,8 @@ const Checkout = () => {
       <Navbar />
       {submitted ? (
         <div className="submitted">
-          <video autoPlay loop>
-            <source src="/animation-unscreen.gif" type="video/gif" />
+          <video autoPlay loop muted>
+            <source src="../public/animation.mp4" type="video/mp4" />
           </video>
         <p>Thank you for your purchase!</p>
         <button onClick={() => setSubmitted(false)}>Back to Shop</button>
@@ -146,6 +146,13 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 90vh;
+  video{
+    width: 150px;
+    height: 150px;
+  }
+  p {
+    margin-top: 1rem;
+  }
   button {
     margin-top: 1rem;
   }
