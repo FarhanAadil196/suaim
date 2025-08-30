@@ -1,10 +1,22 @@
 // src/pages/Contact.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageSent, setMessageSent] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted');
+    setMessageSent(true);
+    setTimeout(() => setMessageSent(false), 3000);
+  };
+
   return (
     <Wrapper>
       <Navbar />
@@ -13,11 +25,30 @@ const Contact = () => {
         <p className="subheading">We’d love to hear from you! Send us a message.</p>
 
         <div className="content">
-          <form className="form" onSubmit={(e) => e.preventDefault()}>
-            <input type="text" placeholder="Your Name" required />
-            <input type="email" placeholder="Your Email" required />
-            <textarea placeholder="Your Message" rows="6" required></textarea>
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your Name"
+              required
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Your Message"
+              rows="6"
+              required
+            ></textarea>
             <button type="submit">Send Message</button>
+            {messageSent && <p className="message-sent">Message sent!</p>}
           </form>
 
           <div className="map">
@@ -105,4 +136,14 @@ const Wrapper = styled.section`
     border: none;
     border-radius: 1rem;
   }
+
+  .message-sent {
+    background-color: #f7f7f7;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    color: #111;
+  }
 `;
+

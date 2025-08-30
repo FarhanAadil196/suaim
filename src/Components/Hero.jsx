@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
   .hero-text h2 {
     font-size: 3rem;
-    color: #333;
+    color: --clr-secondary;
     margin-bottom: 1rem;
 
     @media (max-width: 480px) {
@@ -44,14 +44,12 @@ const Wrapper = styled.div`
   .hero-text p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #555;
+    color: --clr-primary;
   }
 
   .hero-text button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    background: #000;
-    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
