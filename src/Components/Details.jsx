@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import Footer from "./Footer";
 import { addProductToCheckout } from "./checkoutActions";
 
 function Details() {
@@ -142,6 +141,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
   }
 
   .image-section {
@@ -263,4 +265,5 @@ const Wrapper = styled.div`
     background-color: #ccc;
     cursor: not-allowed;
   }
+    
 `;
