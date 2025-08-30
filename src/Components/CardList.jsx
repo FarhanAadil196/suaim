@@ -29,14 +29,14 @@ const Wrapper = styled.div`
   }
 
   /* Responsive Styling */
-  @media (max-width: 768px) {
-    .cards {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-behavior: smooth;
-      justify-content: flex-start;
-    }
+  // @media (max-width: 768px) {
+  //   .cards {
+  //     flex-wrap: nowrap;
+  //     overflow-x: auto;
+  //     overflow-y: hidden;
+  //     scroll-behavior: smooth;
+  //     justify-content: flex-start;
+  //   }
   }
 
   @media (max-width: 480px) {

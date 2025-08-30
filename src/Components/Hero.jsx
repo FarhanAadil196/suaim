@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import shop from "../data/shop";
 import styled from "styled-components";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -53,7 +55,7 @@ const Wrapper = styled.div`
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
 .wrapper {
   flex:1;
 }
@@ -253,10 +255,12 @@ export default function Hero() {
             Make Your Look More Perfect!
           </h2>
           <p ref={(el) => (textRef.current[1] = el)}>
-            Fashion is the armor to survive the reality of everyday life :)
+            Fashion is the armor to survive the reality of everyday life :
           </p>
           <button ref={(el) => (textRef.current[2] = el)}>
+            <Link to="/shop">
             Start Shopping
+            </Link>
           </button>
         </div>
 
@@ -310,3 +314,4 @@ export default function Hero() {
     </Wrapper>
   );
 }
+
