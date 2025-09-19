@@ -61,10 +61,10 @@ const Checkout = () => {
       {submitted ? (
         <div className="submitted">
           <video autoPlay loop muted>
-            <source src="../public/animation.mp4" type="video/mp4" />
+            <source src="/animation.mp4" type="video/mp4" />
           </video>
-        <p>Thank you for your purchase!</p>
-        <button onClick={() => setSubmitted(false)}>Back to Shop</button>
+          <p>Thank you for your purchase!</p>
+          <button onClick={() => setSubmitted(false)}>Back to Shop</button>
         </div>
       ) : (
         <div className="checkout">
